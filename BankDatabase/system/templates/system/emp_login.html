@@ -1,0 +1,36 @@
+{% extends 'system/base_form.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div class="container" style="padding:2cm">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form method="post" action="{% url 'employee_reg_login' 'emp_login'%}">
+{% csrf_token %}
+<h2>Employee Login/Register</h2><br>
+{{form | crispy}}
+
+<div>
+  <input type="submit" value="Login" class="btn btn-primary" role="button"/>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+<br><br>
+<p><a href="{% url 'employee_reg_login' 'emp_reg'%}" class="btn btn-primary" role="button">Register</a> </p> <br>
+<p><a href="{% url 'index' %}" class="btn btn-primary" role="button">Home</a> </p>
+</div>
+</body>
+</html>
+
+{% endblock%}

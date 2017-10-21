@@ -1,0 +1,67 @@
+{% extends 'system/base_form.html' %}
+
+{%block content%}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#option {
+     position: absolute;
+
+   bottom: 170px;
+   text-align: center;
+   width: 100%;
+}
+#pp {
+padding-left : 20 px; }
+
+</style>
+</head>
+<body >
+<div style="background-color : #80b3ff">
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<!--<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row"> -->
+				<div class="jumbotron" id="pp" style="padding-left :3cm; background-color:#000000!important; color:#FFFFFF; " >
+					<h2>
+					DG Firms
+				</h2>
+				<p> Banking Solutions
+									</p>
+                </div>
+
+            <br><br><br><br>
+
+			<div id="option">
+				<h3>Who Are You?</h3>
+				<br>
+				<br>
+				<br>
+				<a href="{% url 'customer_login' %}" role="button" class="btn btn-primary"> I AM A CUSTOMER</a>
+				<br><br><br>
+				<a href="{% url 'employee_reg_login' 'emp_login' %}" role="button" class="btn btn-primary">I AM AN EMPLOYEE</a>
+			</div>
+		<!--</div>
+	</div>
+</div> -->
+</body>
+</div>
+</html>
+
+ <!-- <a href="{%url 'customer_login'  %} " class="btn btn-default" role="button">Customer</a>
+<a href="{%url 'employee_reg_login' 'emp_login' %}">Employee</a> </li> -->
+{% endblock %}

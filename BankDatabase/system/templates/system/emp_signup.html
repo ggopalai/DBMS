@@ -1,0 +1,30 @@
+{% extends 'system/base_form.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div class="container" style="padding:2cm">
+<form method="post" action="{% url 'employee_reg_login' 'emp_reg'%}">
+{% csrf_token %}
+<h2>Employee Registration</h2><br><br>
+ {{ form.errors }}
+{{ form.non_field_errors }}
+{{form | crispy }}
+
+
+<div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+<br><br><br>
+<p><a href="{% url 'index' %}" class="btn btn-primary" role="button">Go to Homepage</a> </p>
+</div>
+</body>
+</html>
+{% endblock %}

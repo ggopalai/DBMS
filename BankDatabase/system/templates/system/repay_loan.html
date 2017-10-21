@@ -1,0 +1,26 @@
+{% extends 'system/base_form.html' %}
+{% load crispy_forms_tags %}
+{%block content %}
+<div class="container" style="padding:2cm">
+<form method="post" action="{% url 'repay_loan' %}">
+    <h2> Repay Loan</h2> <br><br>
+{% csrf_token %}
+
+ {{ repay_form.errors }}
+{{ repay_form.non_field_errors }}
+
+   {{repay_form | crispy }}
+
+<div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+
+</form>
+<br><br>
+<a href="{% url 'customer_details' %}" class="btn btn-primary" role="button" >
+					 Go Back
+				</a>
+</div>
+
+{% endblock %}

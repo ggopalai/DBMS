@@ -1,0 +1,26 @@
+{% extends 'system/base_form.html' %}
+{% load crispy_forms_tags %}
+{%block content %}
+
+<div class="container" style="padding:2cm">
+    <h2> Apply for Loan</h2> <br>
+<form method="post" action="{% url 'apply_loan' %}">
+{% csrf_token %}
+
+ {{ loan_form.errors }}
+{{ loan_form.non_field_errors }}
+
+   {{loan_form | crispy}}
+
+<div>
+  <input type="submit" value="Submit" class="btn btn-primary" role="button" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+    <br><br>
+
+<a href="{% url 'customer_details' %}" class="btn btn-primary" role="button" >
+					 Go Back
+				</a>
+</div>
+{% endblock %}

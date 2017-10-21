@@ -1,0 +1,44 @@
+{% extends 'system/base_form.html' %}
+{% load crispy_forms_tags %}
+{%block content %}
+<div class="container" style="padding:2cm">
+{% if deposit %}
+<form method="post" action="{% url 'customer_deposit' customer_email=email %}">
+{% csrf_token %}
+
+ {{ deposit_form.errors }}
+{{ deposit_form.non_field_errors }}
+    <h2> Deposit </h2><br>
+   {{deposit_form | crispy}}
+
+<div>
+  <input type="submit" value="Submit" class="btn btn-primary" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+{% endif %}
+
+{% if withdraw %}
+
+<form method="post" action="{% url 'customer_withdraw'%}">
+{% csrf_token %}
+
+ {{ withdraw_form.errors }}
+{{ withdraw_fomr.non_field_errors }}
+    <h2>Withdraw</h2> <br>
+   {{withdraw_form | crispy}}
+<br>
+<div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+{% endif %}
+
+    <br><br>
+<a href="{% url 'customer_details' %}" class="btn btn-primary" role="button" >
+					 Go Back
+				</a>
+</div>
+{% endblock %}
+

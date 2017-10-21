@@ -1,0 +1,40 @@
+{% extends 'system/base_form.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container" style="padding:2cm">
+{% if messages %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<p class="text-info text-right lead">
+				{% for message in messages %}
+				<strong>{{ message }}</strong>.
+				{% endfor %}
+
+			</p>
+		</div>
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<h2> Update Customer Profile</h2> <br>
+<form method="post" action="{% url 'customer_update_profile' %}">
+    {%csrf_token%}
+    {{ form | crispy }}
+
+<br>
+<div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+</div>
+{% endblock %}
+

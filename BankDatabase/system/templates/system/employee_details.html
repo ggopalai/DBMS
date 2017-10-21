@@ -1,0 +1,41 @@
+{% extends 'system/base_form.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+</head>
+<body>
+<div class="container" style="padding:2cm">
+<h2>{{emp.name}}</h2> <br>
+<h3>The customers registered by you are:</h3>  <br>
+{% for customer in customers %}
+<h4>{{customer.e_id}} <h4>
+<a href="{% url 'delete_customer' customer_email=customer.e_id %}" onclick="return confirm('Are you sure?')" class="btn btn-primary">Delete customer</a>
+<a href="{% url 'customer_deposit' customer_email=customer.e_id %}" class="btn btn-primary">
+					 Deposit
+				</a>
+<a href="{% url 'customer_update_salary' customer_email=customer.e_id%}" class="btn btn-primary">Update Salary</a>
+{% endfor %}
+<br><br><br>
+
+{% if defaulters %}
+<p>Defaulters are:</p>
+{% for member in defaulters %}
+<li>{{ member.username }}</li>
+<a href="{% url 'renew' customer_email=member.username%}" onclick="return confirm('Are you sure?)">Renew customer</a>
+
+{% endfor %}
+
+{% endif %}
+
+
+<p><a href="{% url 'logout_view' %}" class="btn btn-primary">Logout</a> </p><br>
+<p><a href="{% url 'customer_register'%}" class="btn btn-primary" >Register Customer</a> </p> <br>
+<p><a href="{% url 'employee_update_profile' %}" class="btn btn-primary">Update profile</a> </p>
+</div>
+</body>
+</html>
+{%endblock %}
